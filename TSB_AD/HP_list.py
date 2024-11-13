@@ -238,7 +238,7 @@ Uni_algo_HP_dict = {
 Optimal_Uni_algo_HP_dict = {
     'Sub_IForest': {'periodicity': 1, 'n_estimators': 150},
     'IForest': {'n_estimators': 200},
-    'Sub_LOF': {'periodicity': 2, 'n_neighbors': 30},
+    'Sub_LOF': {'periodicity': 2, 'n_neighbors': 50},
     'LOF': {'periodicity': 1, 'n_neighbors': 50},
     'POLY': {'periodicity': 1, 'power': 4},
     'MatrixProfile': {'periodicity': 1},

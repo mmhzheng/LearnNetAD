@@ -46,9 +46,12 @@ def find_length_rank(data, rank=1):
         # print('sorted_local_max: ', sorted_local_max)
         # print('max_local_max: ', max_local_max)
         if local_max[max_local_max]<3 or local_max[max_local_max]>300:
+            print(f"Window size 125 is selected for {rank}th rank")
             return 125
+        print(f"Window size {local_max[max_local_max]+base} is selected for {rank}th rank")
         return local_max[max_local_max]+base
     except:
+        print(f"ERROR! Window size 125 is selected for {rank}th rank")
         return 125
     
 
