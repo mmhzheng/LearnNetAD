@@ -386,7 +386,7 @@ class basic_metricor():
         output: list of ordered pair [[a0,b0], [a1,b1]... ] of the inputs
         '''
         anomaly_starts = np.where(np.diff(label) == 1)[0] + 1
-        anomaly_ends, = np.where(np.diff(label) == -1)
+        anomaly_ends,  = np.where(np.diff(label) == -1)
         if len(anomaly_ends):
             if not len(anomaly_starts) or anomaly_ends[0] < anomaly_starts[0]:
                 # we started with an anomaly, so the start of the first anomaly is the start of the labels

@@ -6,3 +6,4 @@ Datasets/TSB-AD-Datasets
 Datasets/MyData
 TSB_AD/models/NormA.py
 TSB_AD/models/Series2Graph.py
+.history

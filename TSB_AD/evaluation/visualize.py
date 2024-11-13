@@ -11,7 +11,7 @@ def plotFig(data, label, score, slidingWindow, fileName, modelName, plotRange=No
     L, fpr, tpr= grader.metric_new(label, score, plot_ROC=True)
     precision, recall, AP = grader.metric_PR(label, score)
     
-    range_anomaly = grader.range_convers_new(label)
+    range_anomaly = grader.range_convers_new(label)  # 获得若干 abnormal 的范围
     # print(range_anomaly)
     
     # max_length = min(len(score),len(data), 20000)
