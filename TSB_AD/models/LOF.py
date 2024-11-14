@@ -176,8 +176,9 @@ class LOF(BaseDetector):
 
         if n_features == 1 and self.sub: 
             # Converting time series data into matrix format
-            X = Window(window = self.slidingWindow).convert(X).to_numpy()
-        if self.normalize: X = zscore(X, axis=1, ddof=1)
+            X = Window(window = self.slidingWindow).convert(X).to_numpy() # 这里获得滑动窗口的数据
+        if self.normalize: 
+            X = zscore(X, axis=1, ddof=1)  ## 归一化，计算z分数，将数据改为均值为0，标准差为1
 
         # validate inputs X and y (optional)
         X = check_array(X)
@@ -198,9 +199,11 @@ class LOF(BaseDetector):
         self.decision_scores_ = invert_order(self.detector_.negative_outlier_factor_)
 
         # padded decision_scores_
+        # 前后各pad slideWindow//2个数
         if self.decision_scores_.shape[0] < n_samples:
             self.decision_scores_ = np.array([self.decision_scores_[0]]*math.ceil((self.slidingWindow-1)/2) + 
                         list(self.decision_scores_) + [self.decision_scores_[-1]]*((self.slidingWindow-1)//2))
+            # self.decision_scores_ = np.array([self.decision_scores_[0]]*math.ceil((self.slidingWindow-1)) +  list(self.decision_scores_) )
 
         self._process_decision_scores()
         return self

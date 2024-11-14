@@ -32,10 +32,11 @@ class Window:
         if n == 0:
             df = X
         else:
+            # original code, seems to be wrong
             for i in range(0, n*self.stride, self.stride):
                 L.append(X.shift(i))
-            df = pd.concat(L, axis = 1)
-            df = df.iloc[(n-1)*self.stride:]
+            df = pd.concat(L, axis = 1)   #这里确实创建了滑动窗口
+            df = df.iloc[(n-1)*self.stride:]  # 这里选择窗口完整的数据
         return df
 
 class tf_Stat:

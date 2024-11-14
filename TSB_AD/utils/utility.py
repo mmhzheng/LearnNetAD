@@ -787,3 +787,34 @@ def get_optimal_n_bins(X, upper_bound=None, epsilon=1):
                     b - 1 + np.power(np.log(b), 2.5)))
 
     return np.argmax(maximum_likelihood) + 1
+
+
+def postprocess_scores(window_size, scores):
+    """ Postprocess the outlier scores using a sliding window.
+    Parameters
+    ----------
+    window_size : int
+        The size of the sliding window.
+    scores : numpy array of shape (n_samples,)
+        The outlier scores to be postprocessed.
+    Returns
+    -------
+    postprocessed_scores : numpy array of shape (n_samples,)
+        The postprocessed outlier scores.
+    """
+    if window_size < 1:
+        raise ValueError("The window size must be at least 1.")
+
+    if window_size == 1:
+        return scores
+
+    postprocessed_scores = np.zeros_like(scores)
+
+    for i in range(len(scores)):
+        # i
+        # i, i+1, ..., i+window_size-1
+        start = i
+        end = min(i + window_size, len(scores))
+        postprocessed_scores[i] = np.max(scores[start:end])
+    return postprocessed_scores
+    

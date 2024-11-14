@@ -55,6 +55,7 @@ def run_Sub_LOF(data, periodicity=1, n_neighbors=30, metric='minkowski', n_jobs=
     clf = LOF(slidingWindow=slidingWindow, n_neighbors=n_neighbors, metric=metric, n_jobs=n_jobs)
     clf.fit(data)
     score = clf.decision_scores_
+    # 将分数适配到(0,1)                                           # -1表示行数自动计算，按列
     score = MinMaxScaler(feature_range=(0,1)).fit_transform(score.reshape(-1,1)).ravel()
     return score
 
